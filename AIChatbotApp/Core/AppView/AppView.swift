@@ -15,16 +15,10 @@ struct AppView: View {
         AppViewBuilder(
             showTabBar: showTabBar,
             tabBarView: {
-                Color.blue.ignoresSafeArea()
-                    .overlay {
-                        Text("T A B B A R V İ E W")
-                    }
+                TabBarView()
             },
             onboardingView: {
-                Color.red.ignoresSafeArea()
-                    .overlay {
-                        Text("ONBOARDING VIEW")
-                    }
+                WelcomeView()
             }
         )
     }

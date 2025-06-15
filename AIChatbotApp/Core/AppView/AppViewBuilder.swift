@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct AppViewBuilder<Content: View>: View {
+struct AppViewBuilder<Content: View, OnboardingContent: View>: View {
     var showTabBar: Bool
     
     @ViewBuilder var tabBarView: Content
-    @ViewBuilder var onboardingView: Content
+    @ViewBuilder var onboardingView: OnboardingContent
     
     var body: some View {
         ZStack {
@@ -35,16 +35,10 @@ private struct PreviewView: View {
         AppViewBuilder(
             showTabBar: showTabBar,
             tabBarView: {
-                Color.blue.ignoresSafeArea()
-                    .overlay {
-                        Text("T A B B A R V İ E W")
-                    }
+                TabBarView()
             },
             onboardingView: {
-                Color.red.ignoresSafeArea()
-                    .overlay {
-                        Text("ONBOARDING VIEW")
-                    }
+                WelcomeView()
             }
         )
         .onTapGesture {
@@ -52,7 +46,6 @@ private struct PreviewView: View {
         }
     }
 }
-
 
 #Preview {
     PreviewView()
