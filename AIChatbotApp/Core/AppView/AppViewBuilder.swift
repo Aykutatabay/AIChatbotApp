@@ -15,12 +15,12 @@ struct AppViewBuilder<Content: View, OnboardingContent: View>: View {
     
     var body: some View {
         ZStack {
-            if !showTabBar {
+            if showTabBar {
                 tabBarView
-                    .transition(.move(edge: .leading))
+                    .transition(.move(edge: .trailing))
             } else {
                 onboardingView
-                    .transition(.move(edge: .trailing))
+                    .transition(.move(edge: .leading))
             }
         }
         .animation(.smooth, value: showTabBar)

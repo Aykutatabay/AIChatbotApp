@@ -20,14 +20,15 @@ struct TabBarView: View {
                     .tabItem {
                         Label("Chats", systemImage: "bubble.left.and.bubble.right")
                     }
+                
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
             }
-            .navigationBarHidden(true)
-            .navigationTitle("Title")
+            .navigationBarTitleDisplayMode(.large)
         }
+       
     }
 }
 
