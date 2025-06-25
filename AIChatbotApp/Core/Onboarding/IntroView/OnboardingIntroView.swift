@@ -9,7 +9,20 @@ import SwiftUI
 
 struct OnboardingIntroView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AttributedLocalizedText(localizedKey: "onboarding_opening_text", arguments: [])
+            // satır arası bosluk baselineOffset
+                .baselineOffset(5)
+                .frame(maxHeight: .infinity)
+            NavigationLink {
+                OnboardingColorView()
+            } label: {
+                Text("Continue")
+                    .callToActionButton()
+            }
+            .padding(20)
+
+        }
     }
 }
 

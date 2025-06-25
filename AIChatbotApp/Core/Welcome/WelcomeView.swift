@@ -40,7 +40,7 @@ struct WelcomeView: View {
     private var ctaButtons: some View {
         VStack {
             NavigationLink {
-                OnboardingCompletedView()
+                OnboardingIntroView()
             } label: {
                 Text("Get Started")
                     .callToActionButton()
