@@ -31,6 +31,14 @@ struct ChatMessageModel: Codable {
         self.dateCreated = dateCreated
     }
     
+    func hasBeenSeenByCurrentUser(userId: String) -> Bool {
+        guard let seenByIds, !seenByIds.isEmpty else {
+            return false 
+        }
+        
+        return seenByIds.contains(userId)
+    }
+    
     static var mock: ChatMessageModel {
         mocks.first!
     }

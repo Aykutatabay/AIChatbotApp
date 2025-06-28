@@ -12,11 +12,26 @@ struct ChatsView: View {
     
     var body: some View {
         NavigationStack {
-            List(content: {
-                ForEach(chats) { chat in
-                    Text(chat.id)
+            List(
+                content: {
+                    ForEach(chats) { chat in
+                        ChatRowCellViewBuilder(
+                            currentUserId: nil, // FIXME: add user id
+                            chat: chat) {
+                                try? await Task.sleep(for: .seconds(1))
+                                return .mock
+                            } getMessage: {
+                                try? await Task.sleep(for: .seconds(1))
+                                return .mock
+                            }
+                            .anyButton(option: .highlight, action: {
+                                
+                            })
+                            .removeListRowFormatting()
+
                 }
             })
+            
                 .navigationTitle("Chats")
         }
     }
