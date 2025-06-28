@@ -16,7 +16,7 @@ struct ImageLoaderView: View {
     var body: some View {
         // swiftui bugı fill dediğin halde tm olarak 100/200 vermiyor o nedenle overlay ve clipped uyguladık
         Rectangle()
-            .opacity(0)
+            .opacity(0001)
             .overlay {
                 WebImage(url: .init(string: urlString))
                     .resizable()
@@ -31,4 +31,7 @@ struct ImageLoaderView: View {
 #Preview {
     ImageLoaderView()
         .frame(width: 100, height: 200)
+        .anyButton(option: .highlight) {
+            
+        }
 }
