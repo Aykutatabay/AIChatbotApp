@@ -25,6 +25,11 @@ struct CarouselView<Content: View, T: Hashable>: View {
                 LazyHStack(spacing: 0) {
                     ForEach(items, id: \.self) { avatar in
                         content(avatar)
+                            .containerRelativeFrame(.horizontal)
+                            .scrollTransition(.interactive.threshold(.visible(0.9)), transition: { content, phase in
+                                content.scaleEffect(phase.isIdentity ? 1 : 0.8)
+                            })
+                            .id(avatar)
                     }
                 }
             }
@@ -63,11 +68,7 @@ struct CarouselView<Content: View, T: Hashable>: View {
     CarouselView(content: { avatar in
         HeroCellView(title: avatar.name, subtitle: avatar.characterDescription, imageName: avatar.profileImageName)
                                 // bu modifier iyiymiş !!!!!
-                                    .containerRelativeFrame(.horizontal)
-                                    .scrollTransition(.interactive.threshold(.visible(0.9)), transition: { content, phase in
-                                        content.scaleEffect(phase.isIdentity ? 1 : 0.8)
-                                    })
-                                    .id(avatar)
+                                   
     }, data: items)
 }
 
