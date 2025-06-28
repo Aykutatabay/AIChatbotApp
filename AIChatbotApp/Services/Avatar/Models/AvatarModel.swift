@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct AvatarModel {
+// NOTE: - Using struct for model because of that structs are Sendable by default
+struct AvatarModel: Hashable {
     let avatarId: String
     let name: String?
     let characterOption: CharacterOption?
