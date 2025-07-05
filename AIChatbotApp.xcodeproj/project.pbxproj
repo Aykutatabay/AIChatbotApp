@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1C1CB62E19DEF900BB2818 /* SwiftfulUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 0A1C1CB52E19DEF900BB2818 /* SwiftfulUtilities */; };
 		0AA5962C2DFF608F00889471 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA5962B2DFF608F00889471 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA5962C2DFF608F00889471 /* SDWebImageSwiftUI in Frameworks */,
+				0A1C1CB62E19DEF900BB2818 /* SwiftfulUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +121,7 @@
 			name = AIChatbotApp;
 			packageProductDependencies = (
 				0AA5962B2DFF608F00889471 /* SDWebImageSwiftUI */,
+				0A1C1CB52E19DEF900BB2818 /* SwiftfulUtilities */,
 			);
 			productName = AIChatbotApp;
 			productReference = 0A7306BD2D9B473D000E5E61 /* AIChatbotApp.app */;
@@ -204,6 +207,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0AA5962A2DFF608F00889471 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				0A1C1CB42E19DEF900BB2818 /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0A7306BE2D9B473D000E5E61 /* Products */;
@@ -610,6 +614,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0A1C1CB42E19DEF900BB2818 /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUtilities";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.6;
+			};
+		};
 		0AA5962A2DFF608F00889471 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -621,6 +633,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0A1C1CB52E19DEF900BB2818 /* SwiftfulUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A1C1CB42E19DEF900BB2818 /* XCRemoteSwiftPackageReference "SwiftfulUtilities" */;
+			productName = SwiftfulUtilities;
+		};
 		0AA5962B2DFF608F00889471 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0AA5962A2DFF608F00889471 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
