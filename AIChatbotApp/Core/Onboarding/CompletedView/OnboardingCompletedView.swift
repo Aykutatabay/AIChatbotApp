@@ -29,21 +29,7 @@ struct OnboardingCompletedView: View {
         }
         .frame(maxHeight: .infinity)
         .safeAreaInset(edge: .bottom) {
-            
-            Group {
-                if isCompletingProfileSetup {
-                    ProgressView()
-                        .tint(.white)
-                } else {
-                    Text("Finish")
-                }
-            }
-            .callToActionButton()
-            .anyButton(option: .press) {
-                onFinishButtonTapped()
-            }
-            .disabled(isCompletingProfileSetup)
-            .padding(20)
+            AsyncCallToActionButton(title: "Finish", isLoading: isCompletingProfileSetup, action: onFinishButtonTapped)
         }
     }
     
