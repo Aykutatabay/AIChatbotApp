@@ -36,6 +36,7 @@ struct ChatRowCellViewBuilder: View {
                 didLoadChatMessage = true
             }
     }
+    
     private var subheadline: String? {
         if isLoading {
             return "sajshjahs"

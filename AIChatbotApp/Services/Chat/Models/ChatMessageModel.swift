@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessageModel: Codable {
+struct ChatMessageModel: Codable, Identifiable {
     let id: String
     let chatId: String
     let authorId: String?
@@ -72,7 +72,7 @@ struct ChatMessageModel: Codable {
             ChatMessageModel(
                 id: UUID().uuidString,
                 chatId: "chat_001",
-                authorId: "bob456",
+                authorId: "user_001",
                 content: "Evet, 14:00'te başlıyor.",
                 seenByIds: ["alice123"],
                 dateCreated: Date().addingTimeInterval(-60 * 2) // 2 dakika önce
@@ -80,7 +80,7 @@ struct ChatMessageModel: Codable {
             ChatMessageModel(
                 id: UUID().uuidString,
                 chatId: "chat_001",
-                authorId: "alice123",
+                authorId: "user_001",
                 content: "Süper, teşekkürler!",
                 seenByIds: [],
                 dateCreated: Date().addingTimeInterval(-60 * 1) // 1 dakika önce
