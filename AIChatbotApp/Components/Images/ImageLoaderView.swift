@@ -9,9 +9,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ImageLoaderView: View {
-    
     var urlString: String = Constants.randomImage
     var resizingMode: ContentMode = .fill
+    var forceTransitionAnimation: Bool = false
     
     var body: some View {
         // swiftui bugı fill dediğin halde tm olarak 100/200 vermiyor o nedenle overlay ve clipped uyguladık
@@ -25,6 +25,12 @@ struct ImageLoaderView: View {
                     .allowsHitTesting(false)
             }
             .clipped()
+            .ifSatisfiedCondition(forceTransitionAnimation, transform: { content in
+                content
+                    .drawingGroup()
+                // bu modifier bu view ı acılmadan once render eder
+            })
+        
     }
 }
 
