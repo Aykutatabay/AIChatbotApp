@@ -13,9 +13,10 @@ struct ProfileView: View {
     @State private var showCreateAvatarsView: Bool = false
     @State private var currentUser: UserModel? = .mock
     @State private var myAvatars: [AvatarModel] = []
+    @State private var path: [NavigationPathOption] = []
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 myInfoSection
                 myAvatarsSection
@@ -63,16 +64,14 @@ struct ProfileView: View {
                 ForEach(myAvatars, id: \.self) { avatar in
                     CustomListCellView(imageName: avatar.profileImageName, title: avatar.name, subtitle: nil)
                         .anyButton(option: .highlight, action: {
-                            
+                            onAvatarPressed(avatar: avatar)
                         })
                         .removeListRowFormatting()
                 }
                 .onDelete { indexSet in
                     onDeleteAvatar(index: indexSet)
                 }
-            }
-            
-            
+            } 
         } header: {
             HStack(spacing: 0) {
                 Text("My Avatars")
@@ -86,6 +85,10 @@ struct ProfileView: View {
                     }
             }
         }
+    }
+    
+    private func onAvatarPressed(avatar: AvatarModel) {
+        path.append(.chat(avatarId: avatar.avatarId))
     }
     
     private var myInfoSection: some View {

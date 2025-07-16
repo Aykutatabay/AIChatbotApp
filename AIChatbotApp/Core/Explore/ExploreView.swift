@@ -14,30 +14,32 @@ struct ExploreView: View {
     @State private var categories: [CharacterOption] = CharacterOption.allCases
     @State private var popularAvatars: [AvatarModel] = AvatarModel.mocks
     
+    @State private var path: [NavigationPathOption] = []
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 featuredSection
                 categoriesSection
                 popularSection
             }
             .navigationTitle("Explore")
+            .navigationDestinationForCore(path: $path)
         }
     }
     
     private var popularSection: some View {
         Section {
-                ForEach(popularAvatars, id: \.self) { avatar in
-                    CustomListCellView(
-                        imageName: avatar.profileImageName,
-                        title: avatar.name,
-                        subtitle: avatar.characterDescription   
-                    )
-                    .anyButton(option: .highlight) {
-                        
-                    }
-                    .removeListRowFormatting()
-                
+            ForEach(popularAvatars, id: \.self) { avatar in
+                CustomListCellView(
+                    imageName: avatar.profileImageName,
+                    title: avatar.name,
+                    subtitle: avatar.characterDescription
+                )
+                .anyButton(option: .highlight) {
+                    onAvatarPressed(avatar: avatar)
+                }
+                .removeListRowFormatting()
             }
             
         } header: {
@@ -45,12 +47,25 @@ struct ExploreView: View {
         }
     }
     
+    private func onAvatarPressed(avatar: AvatarModel) {
+        path.append(.chat(avatarId: avatar.avatarId))
+    }
+    
+    private func onCategoryPressed(_ category: CharacterOption, imageName: String) {
+        path.append(.category(category: category, imageName: imageName))
+    }
+    
     private var categoriesSection: some View {
         Section {
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(categories, id: \.self) { category in
-                        CategoryCellView(title: category.rawValue.capitalized)
+                        if let imageName = popularAvatars.first(where: { $0.characterOption == category })?.profileImageName {
+                            CategoryCellView(title: category.rawValue.capitalized, imageName: Constants.randomImage)
+                                .anyButton {
+                                    onCategoryPressed(category, imageName: imageName)
+                                }
+                        }
                     }
                 }
             }

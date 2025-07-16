@@ -99,6 +99,19 @@ extension View {
     }
 }
 
+extension View {
+    func navigationDestinationForCore(path: Binding<[NavigationPathOption]>) -> some View {
+        self
+            .navigationDestination(for: NavigationPathOption.self) { newValue in
+                switch newValue {
+                case .chat(avatarId: let avatarId):
+                    ChatView(avatarId: avatarId)
+                case .category(category: let category, imageName: let imageName):
+                    CategoryListView(path: path, category: category, imageName: imageName)
+                }
+            }
+    }
+}
 
 enum ButtonStyleOption {
     case press, highlight, plain

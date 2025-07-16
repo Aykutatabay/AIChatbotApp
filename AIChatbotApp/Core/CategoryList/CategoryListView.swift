@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    @Binding var path: [NavigationPathOption]
+    @State private var avatars: [AvatarModel] = AvatarModel.mocks
+    
     var category: CharacterOption = .alien
     var imageName: String = Constants.randomImage
-    @State private var avatars: [AvatarModel] = AvatarModel.mocks
     
     var body: some View {
         List {
@@ -19,14 +21,23 @@ struct CategoryListView: View {
             
             ForEach(avatars, id: \.avatarId) { avatar in
                 CustomListCellView(imageName: avatar.profileImageName, title: avatar.name, subtitle: avatar.characterDescription.lowercased())
+                    .anyButton(option: .plain, action: {
+                        onAvatarPressed(avatar: avatar)
+                    })
                     .removeListRowFormatting()
+                
             }
         }
+        .navigationDestinationForCore(path: $path)
         .ignoresSafeArea()
         .listStyle(.plain)
+    }
+    
+    private func onAvatarPressed(avatar: AvatarModel) {
+        path.append(.chat(avatarId: avatar.avatarId))
     }
 }
 
 #Preview {
-    CategoryListView()
+    CategoryListView(path: .constant([]))
 }
